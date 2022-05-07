@@ -17,7 +17,7 @@
 
 
 
-
+/*
 function whatNumberIsIt(n){
   if (n === Number.MAX_VALUE) return "Input number is Number.MAX_VALUE";
   else if (n === Number.MIN_VALUE) return "Input number is Number.MIN_VALUE";
@@ -27,5 +27,19 @@ function whatNumberIsIt(n){
   else return `Input number is ${n}`
   
 }
+*/
 
-  console.log(whatNumberIsIt('h'));
+function whatNumberIsIt(n){
+  if (isNaN(n)) return "Input number is Number.NaN";
+  const possibilities = {
+    [Number.MAX_VALUE]: "Input number is Number.MAX_VALUE",
+    [Number.MIN_VALUE]: "Input number is Number.MIN_VALUE",
+    //[Number.NaN]: "Input number is Number.NaN",
+    [Number.NEGATIVE_INFINITY]: "Input number is Number.NEGATIVE_INFINITY",
+    [Number.POSITIVE_INFINITY]: "Input number is Number.POSITIVE_INFINITY",
+  }
+  return possibilities[n] || `Input number is ${n}`
+}
+
+
+  console.log(whatNumberIsIt(5/0));
