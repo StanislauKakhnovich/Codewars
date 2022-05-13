@@ -4,10 +4,26 @@
 // and numeric digits.
 
 
-function getCount(str){
+function getCount(text){
+  let arr = text.toLowerCase().split('').sort();
+  let arrResult = [];
+
+  for (let i=0; i<arr.length; i++) {
+    if(arr[i]==arr[i+1]){
+      if(!arrResult.some(elem=>elem==arr[i])){
+        arrResult.push(arr[i]);
+      }
+    }
+  }
+return arrResult.length
+
+
+
+
 
 }
 
-console.log(getCount('aabBcde'));
-console.log(getCount('abcde'));
+console.log(getCount('aasd111'));
+console.log(getCount("Indivisibility"));
+console.log(getCount("Indivisibilities"));
 
