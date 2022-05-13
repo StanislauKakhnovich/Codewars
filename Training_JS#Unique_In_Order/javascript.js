@@ -8,16 +8,17 @@
 // uniqueInOrder([1,2,2,3,3])       == [1,2,3]
 
 
-function uniqueInOrder(text){
-
-return 
-
-
-
-
-
+var uniqueInOrder=function(iterable){
+  if (typeof(iterable)==='string') iterable = iterable.split('');  
+  for (let i=0; i<iterable.length; i++) {
+    if(iterable[i]==iterable[i+1]){
+      iterable[i]=0;
+    }
+  }
+    return iterable.filter(elem=>elem!=0);
 }
 
-console.log('AAAABBBCCDAABBB');
-console.log('ABBCcAD');
-console.log([1,2,2,3,3]);
+
+console.log(uniqueInOrder('AAAABBBCCDAABBB'));
+console.log(uniqueInOrder('ABBCcAD'));
+console.log(uniqueInOrder([1,2,2,3,3]));
