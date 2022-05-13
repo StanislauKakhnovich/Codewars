@@ -18,9 +18,14 @@
 
 
 function tribonacci(signature,n){
-  
+  let arrResult=[];
+  for (let i=0; i<n; i++){
+    if(i<3) arrResult.push(signature[i]);
+    else arrResult.push(arrResult[i-1]+arrResult[i-2]+arrResult[i-3])
+  }
+  return arrResult;
 }
 
 console.log(tribonacci([1,1,1], 10));
 console.log(tribonacci([0,0,1], 10));
-console.log(tribonacci([1,1,1], 10));
+console.log(tribonacci([1,1,1], 1));
