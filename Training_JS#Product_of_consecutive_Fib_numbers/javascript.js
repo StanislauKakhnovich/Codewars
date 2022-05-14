@@ -33,10 +33,16 @@
 // productFib(800) # should return [34, 55, false], 
 
 function productFib(prod){
-
+  let next=1;
+  let last=0;
+  while (prod>last*next){
+    let storage = next;
+    next=last+next;
+    last=storage;
+  }
+  if (prod === last*next) return [last, next, true];
+  if (prod < last*next) return [last, next, false];
 }
-
-
 
 console.log(productFib(714));
 console.log(productFib(800));
