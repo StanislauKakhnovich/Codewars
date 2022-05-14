@@ -33,8 +33,48 @@
 //  black to complete the region.
 
 function doneOrNot(board){
-  //if(board.forEach(row=>row.some()))
+  let controlRow=true;
+  let controlColumn=true;
+  let controlRegion=true;
+  let columnsArr = [];
+  let regionArr = [];
+  for (let i=0; i<9; i++){
+    columnsArr.push([]);
+    regionArr.push([]);
+  };
+
+  for (let i=0; i<board.length; i++){
+    let row = Object.values(Object.assign({},board[i])) ;
+    for (let j=0; j<row.length; j++){
+      columnsArr[j].push(row[j]);
+      let indexRegionArr = Math.floor(i / 3) + Math.floor(j / 3) * 3;
+      regionArr[indexRegionArr].push(row[j]);
+      let control = row[j];
+      row[j] = 0;
+      if (row.includes(control)) controlRow=false
+    }
+  }
+
+  for (let i=0; i<columnsArr.length; i++){
+    let row = Object.values(Object.assign({},columnsArr[i])) ;
+    for (let j=0; j<row.length; j++){
+      let control = row[j];
+      row[j] = 0;
+      if (row.includes(control)) controlColumn=false
+    }
+  }
+
+  for (let i=0; i<regionArr.length; i++){
+    let row = Object.values(Object.assign({},regionArr[i])) ;
+    for (let j=0; j<row.length; j++){
+      let control = row[j];
+      row[j] = 0;
+      if (row.includes(control)) controlRegion=false
+    }
+  }
+
   
+  return controlRow&&controlColumn&&controlRegion?'Finished!':'Try again!';
 }
 
 
@@ -47,3 +87,16 @@ console.log(doneOrNot([[5, 3, 4, 6, 7, 8, 9, 1, 2],
                       [9, 6, 1, 5, 3, 7, 2, 8, 4],
                       [2, 8, 7, 4, 1, 9, 6, 3, 5],
                       [3, 4, 5, 2, 8, 6, 1, 7, 9]]));
+
+
+                      
+
+console.log(doneOrNot([[5, 3, 4, 6, 7, 8, 9, 1, 2], 
+                      [6, 7, 2, 1, 9, 0, 3, 4, 9],
+                      [1, 0, 0, 3, 4, 2, 5, 6, 0],
+                      [8, 5, 9, 7, 6, 1, 0, 2, 0],
+                      [4, 2, 6, 8, 5, 3, 7, 9, 1],
+                      [7, 1, 3, 9, 2, 4, 8, 5, 6],
+                      [9, 0, 1, 5, 3, 7, 2, 1, 4],
+                      [2, 8, 7, 4, 1, 9, 6, 3, 5],
+                      [3, 0, 0, 4, 8, 1, 1, 7, 9]]));
