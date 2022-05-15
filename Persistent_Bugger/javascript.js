@@ -8,7 +8,15 @@
 // 4 --> 0 (because 4 is already a one-digit number)
 
 function persistence(num) {
-  
+  num=num+'';
+  let count = 0;
+   while(num.length>1){
+    num=num.split('').reduce((elem, product=1)=>elem*product)+'';
+    count++;
+   }
+  return count
 }
 
-console.log();
+console.log(persistence(39));
+console.log(persistence(999));
+console.log(persistence(4));
