@@ -10,8 +10,16 @@
 
 
 function validate(password) {
-  return /(put answer here)/.test(password);
+  return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}$/.test(password);
 }
 
 console.log(validate('djI38D55'));
 console.log(validate('a2.d412'));
+
+
+// function validate(password) {
+//   return  /^[A-Za-z0-9]{6,}$/.test(password) &&
+//           /[A-Z]+/           .test(password) &&
+//           /[a-z]+/           .test(password) &&
+//           /[0-9]+/           .test(password) ;
+// }
