@@ -48,22 +48,91 @@
 // You should only ever output 0, 1, or 2.
 
 function isInteresting(number, awesomePhrases) {
-  let result;
-  if(number<100) result=0;
+  
+  let controlIncrease = number =>{
+    let arr = (+number.toString().split('').reverse().join('')).toString().split('').reverse();
+    let counter=0;
+    for (let i=0; i<arr.length-1; i++) {
+      if (arr[i]==(arr[i+1]-1)) counter++;
+    }
+    if (counter==arr.length-1 && arr.length>2) return true; 
+    else return false;
+  }
+
+  let controlDecrease = number =>{
+    let arr = number.toString().split('').reverse();
+    let counter=0;
+    for (let i=0; i<arr.length-1; i++) {
+      if (arr[i]==(arr[i+1]-1)) counter++;
+    }
+    if (counter==arr.length-1 && arr.length>2) return true; 
+    else return false;
+  }
+
+  let isPalindrome = number => {
+    let arr = number.toString().split('');
+    let counter=0;
+    for (let i=0; i<~~(arr.length/2); i++){
+      if (arr[i]==arr[arr.length-1-i]) {
+        counter++;
+      }
+    }
+    if (counter==~~(arr.length/2)&& arr.length>2) return true;
+    else return false;
+  }
+
+  let result=0;
+  if(number<98) result=0;
   else {
+    
+    if (awesomePhrases.some(elem=>(elem==number+1)||(elem==number+2))) result=1;
+    if (/^[1-9]{1}0{2,}/.test((number+1).toString())||/^[1-9]{1}0{2,}/.test((number+2).toString())) result=1;
+    if (/^([1-9]){1}\1{2,}\b/.test((number+1).toString())||/^([1-9]){1}\1{2,}\b/.test((number+2).toString())) result=1;
+    if (controlIncrease(number+1)||controlIncrease(number+2)) result = 1;
+    if (controlDecrease(number+1)||controlDecrease(number+2)) result = 1;
+    if (isPalindrome(number+1)||isPalindrome(number+2)) result = 1;
+
+    if (awesomePhrases.some(elem=>elem==number)) result=2;
+    if (/^[1-9]{1}0{2,}\b/.test(number.toString())) result=2;
+    if (/^([1-9]){1}\1{2,}\b/.test(number.toString())) result=2;
+    if (controlIncrease(number)&& number>98) result = 2;
+    if (controlDecrease(number)) result = 2;
+    if (isPalindrome(number)) result = 2;
+
     
   }
   return result;
 }
 
+// function isInteresting(number, awesomePhrases) {
+//   var tests = [
+//     function(n) { return /^\d00+$/.test(n); },
+//     function(n) { return /^(\d)\1+$/.test(n); },
+//     function(n) { return RegExp(n).test(1234567890); },
+//     function(n) { return RegExp(n).test(9876543210); },
+//     function(n) { return n + '' == (n + '').split('').reverse().join(''); },
+//     function(n) { return awesomePhrases.some(function(p) { return p == n; }); }
+//   ];
+  
+//   var interesting = 0;
+//   tests.some(function(test) {
+//     if (number > 99 && test(number))
+//       return interesting = 2;
+//     else if ((number > 98 && test(number + 1)) || (number > 97 && test(number + 2)))
+//       interesting = 1;
+//   });
+//   return interesting;
+// }
 
-console.log(isInteresting(3, [1337, 256]));
-console.log(isInteresting(3236, [1337, 256]));
-console.log(isInteresting(11207, []));
-console.log(isInteresting(11208, []));
-console.log(isInteresting(11209, []));
-console.log(isInteresting(11210, []));
-console.log(isInteresting(11211, []));
+
+console.log(isInteresting(987654320, [1337, 256]));
+console.log(isInteresting(80083, [1337, 256]));
+console.log(isInteresting(998, []));
+console.log(isInteresting(999, []));
+console.log(isInteresting(1234565, []));
+console.log(isInteresting(875, []));
+console.log(isInteresting(1132309, []));
 console.log(isInteresting(1335, [1337, 256]));
 console.log(isInteresting(1336, [1337, 256]));
 console.log(isInteresting(1337, [1337, 256]));
+
