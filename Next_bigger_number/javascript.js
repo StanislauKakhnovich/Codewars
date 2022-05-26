@@ -15,23 +15,23 @@
 
 function nextBigger(n){
   let copy = n;
+  let arr1 = [];
   let arr = copy.toString().split('');
-  let control = false;
-  let strNumber = null;
-  outer: for (let j=0; j<arr.length; j++){
-    let rightDigit = arr[arr.length-1-j];
-    for (let i=arr.length-1; i>0; i--){
-      let leftDigit = arr[i-1];
-      arr[i-1] = rightDigit;
-      arr[i] = leftDigit;
-      strNumber = +arr.join('');
-      if(strNumber>n) {
-        control=true;
-        break outer;
-      } 
+  for (let i=arr.length-1; i>=0; i--) {
+    let control = arr.pop();
+    if (arr[i-1]>=control){
+      arr1.unshift(control);
+    }
+     else if(arr[i-1]<control) {
+      arr1.push(arr[i-1]);
+      arr[i-1]=control;
+      break;
     }
   }
-  if (control) return strNumber;
+  arr1.sort();
+  let arr2=arr.concat(arr1);
+  copy=+arr2.join('');
+  if (copy>n) return copy;
   else return -1;
 }
 
@@ -39,4 +39,24 @@ console.log(nextBigger(12));
 console.log(nextBigger(513));
 console.log(nextBigger(2017));
 console.log(nextBigger(9));
-console.log(nextBigger(111));
+
+console.log(nextBigger(6405974321));
+//  6407123459
+
+ 701001726021872
+
+//172602710817200
+  //if (rightDigit>0) {}
+
+        // console.log(rightDigit);
+        // console.log(leftDigit);
+        // console.log(counter);
+        // console.log(strNumber);
+        // console.log(arr);
+
+ //       46849585  46849855
+
+//  if(strNumber>n) {
+//   control=true;
+//   break outer;
+// } 
