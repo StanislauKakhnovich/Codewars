@@ -8,8 +8,13 @@
 // arrayDiff([1,2,2,2,3],[2]) == [1,3]
 
 function arrayDiff(a, b) {
-  
+  let arr=a.filter(elem=>{
+    return !b.some(elemB=>elemB==elem);
+  });
+  return arr;
 }
 
 console.log(arrayDiff([1,2],[1]));
 console.log(arrayDiff([1,2,2,2,3],[2]));
+console.log(arrayDiff([1,2,3],[1,2]));
+console.log(arrayDiff([],[1,2]));
