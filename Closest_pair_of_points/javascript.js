@@ -40,20 +40,27 @@
 
 
 // Calculate a pair of closest points in linearithmic time
-function closestPair(points) {
-
+function closestPair(pointS) {
+  var arrLengths=[];
+  var arrConformity=[];
+  for (let i=0; i<pointS.length; i++){
+    for (let j=i; j<pointS.length; j++){
+      if (j==pointS.length-1) break;
+      let x = Math.pow((pointS[i][0]-pointS[j+1][0]), 2)+Math.pow((pointS[i][1]-pointS[j+1][1]), 2);
+      let lengthPoint=Math.sqrt(x);
+      arrLengths.push(lengthPoint);
+      let arrPairOfPoints=[pointS[i], pointS[j+1]];
+      arrConformity.push(arrPairOfPoints);
+    }
+  }
+  let minLength=Math.min.apply(null, arrLengths);
+  let indexMinLength=arrLengths.indexOf(minLength);
+ 
+  return arrConformity[indexMinLength];
 }
 
 
-var points = [
-  [2,2], // A
-  [2,8], // B
-  [5,5], // C
-  [6,3], // D
-  [6,7], // E
-  [7,4], // F
-  [7,9]  // G
-];
+//var points = ;
 
-console.log(closestPair(points));
+console.log(closestPair([[2,2],[2,8],[5,5],[6,3],[6,7],[7,4],[7,9]]));
 
