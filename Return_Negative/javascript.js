@@ -10,7 +10,7 @@
 // Zero (0) is not checked for any specific sign. Negative zeros make no mathematical sense.
 
 function makeNegative(num) {
-  // Code?
+  return num>0?num*-1:num;
 }
 
 console.log(makeNegative(1));
