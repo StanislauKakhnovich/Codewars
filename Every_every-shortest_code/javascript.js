@@ -4,9 +4,10 @@
 
 // Code length limit : *** 60 characters ***
 
-function everyEvery(a,n){
-
-}
+// function everyEvery(a,n){
+// return a.every(arr=>arr.every(num=>num>n));
+// }
+everyEvery=(a,n)=>a.every(m=>m.every(b=>b>n))
 
 
 console.log(everyEvery([[66, 101], [99, 88], [77, 10]], 100));
