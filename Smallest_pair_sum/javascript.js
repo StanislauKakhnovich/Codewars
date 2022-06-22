@@ -14,9 +14,12 @@
 // [1,1,2] => 1+1 = 2
 
 function smallestPairSum(numbers){
-
+  compare=(a,b)=>a-b;
+  numbers.sort(compare);
+  return numbers[0]+numbers[1];
 }
 
 
 console.log(smallestPairSum([10,14,2,23,19]));
+console.log(smallestPairSum([99,2,2,23,19]));
 console.log(smallestPairSum([1,1,2]));
