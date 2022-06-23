@@ -6,10 +6,10 @@
 // "identifier"             =>  ""
 
 function solution(string) {
-    
+    return string.replace(/[A-Z]/g, " $&")
 }
 
 
 console.log(solution("camelCasing"));
 console.log(solution("identifier"));
-console.log(solution("identifier"));
+console.log(solution(""));
