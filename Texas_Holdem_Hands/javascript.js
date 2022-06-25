@@ -29,11 +29,23 @@
 // (ie. A,2,3,4,5 is invalid). This is consistent with the author's reference solution. ~docgunthrop
 
 function hand(holeCards, communityCards) {
-  return {type:"TODO", ranks: []};
+  let arr = [...holeCards, ...communityCards];
+
+
+
+   return arr.sort();
+  // return {type:"TODO", ranks: []};
+  
+  // return communityCards[1].charCodeAt(1);
 }
 
 
 console.log(hand(['K♠','A♦'],['J♣','Q♥','9♥','2♥','3♦']));
 console.log(hand(['K♠','Q♦'],['J♣','Q♥','9♥','2♥','3♦']));
 console.log(hand(['K♠','J♦'],['J♣','K♥','9♥','2♥','3♦']));
+
+// ♠ - 9824
+// ♦ - 9830
+// ♣ - 9827
+// ♥ - 9829
 
