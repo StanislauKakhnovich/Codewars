@@ -1,16 +1,35 @@
-// Timmy & Sarah think they are in love, but around where they live, they will only know once they pick a flower each. 
-// If one of the flowers has an even number of petals and the other has an odd number of petals it means they are in love.
+// This time we want to write calculations using functions and get the results. Let's have a look at some examples:
 
-// Write a function that will take the number of petals of each flower and return true if they are in love and 
-// false if they aren't.
+// seven(times(five())); // must return 35
+// four(plus(nine())); // must return 13
+// eight(minus(three())); // must return 5
+// six(dividedBy(two())); // must return 3
+// Requirements:
 
-function lovefunc(flower1, flower2){
-  if (flower1%2==0 && flower2%2!=0) return true;
-  else if (flower1%2!=0 && flower2%2==0) return true;
-  else return false;
-}
+// There must be a function for each number from 0 ("zero") to 9 ("nine")
+// There must be a function for each of the following mathematical operations: plus, minus, times, dividedBy
+// Each calculation consist of exactly one operation and two numbers
+// The most outer function represents the left operand, the most inner function represents the right operand
+// Division should be integer division. For example, this should return 2, not 2.666666...:
+// eight(dividedBy(three()));
 
-console.log(lovefunc(1, 4));
-console.log(lovefunc(2, 2));
-console.log(lovefunc(0, 1));
-console.log(lovefunc(0, 0));
+function zero() {}
+function one() {}
+function two() {}
+function three() {}
+function four() {}
+function five() {}
+function six() {}
+function seven() {}
+function eight() {}
+function nine() {}
+
+function plus() {}
+function minus() {}
+function times() {}
+function dividedBy() {}
+
+console.log(seven(times(five())));
+console.log(four(plus(nine())));
+console.log(eight(minus(three())));
+console.log(six(dividedBy(two())));
