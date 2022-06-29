@@ -28,19 +28,23 @@ function longestConsec(strarr, k) {
   else {
     let arrMiddle=[];
     let copyArr=[...strarr];
-outer:  for(let i=0; i<copyArr.length; i++){
+  for(let i=0; i<copyArr.length; i++){
       let control="";
-      for(let j=0; j<k; j++){
+outer: for(let j=0; j<k; j++){
         if (copyArr[i+j] == undefined)  break outer;
         control=control+copyArr[i+j];
       }
       arrMiddle.push(control);
     }
-    function compareLength(a,b) {
-      return b.length-a.length;
-    }
-    arrMiddle.sort(compareLength);   
-    return arrMiddle[0];
+    var maxLength=arrMiddle[0].length;
+    var maxStr = arrMiddle[0];
+    for (var i=0; i<arrMiddle.length; i++) {
+      if (arrMiddle[i].length>maxLength) {
+        maxLength=arrMiddle[i].length;
+        maxStr=arrMiddle[i];
+      } 
+    } 
+    return maxStr;
   }
 }
 
@@ -49,3 +53,15 @@ outer:  for(let i=0; i<copyArr.length; i++){
 console.log(longestConsec(["zone", "abigail", "theta", "form", "libe", "zas"], 2));
 console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 3));
 console.log(longestConsec(["ejjjjmmtthh", "zxxuueeg", "aanlljrrrxx", "dqqqaaabbb", "oocccffuucccjjjkkkjyyyeehh"], 1));
+
+// function longestConsec(strarr, k) {
+//   var longest = "";
+//   for(var i=0;k>0 && i<=strarr.length-k;i++){
+//     var tempArray = strarr.slice(i,i+k);
+//     var tempStr = tempArray.join("");
+//     if(tempStr.length > longest.length){
+//       longest = tempStr;
+//     }
+//   }
+//   return longest;
+// }
