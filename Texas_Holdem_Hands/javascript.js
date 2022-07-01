@@ -30,10 +30,51 @@
 
 function hand(holeCards, communityCards) {
   let arr = [...holeCards, ...communityCards];
+  let imageToDigit=(image)=>{
+    if(image=='J') return 11;
+    else if(image=='Q') return 12;
+    else if(image=='K') return 13;
+    else if(image=='A') return 14;
+  }
+  arr=arr.map(card=> card.replace(/(J)|(Q)|(K)|(A)/, imageToDigit));
+  let arrControl = [[],[],[],[]];
+  arr.forEach(card=>{
+    if(card[card.length-1]=='♠') card.length<3 ? arrControl[0].push(card[0]) : arrControl[0].push(card.substr(0,2));
+    else if(card[card.length-1]=='♦') card.length<3 ? arrControl[1].push(card[0]) : arrControl[1].push(card.substr(0,2));
+    else if(card[card.length-1]=='♣') card.length<3 ? arrControl[2].push(card[0]) : arrControl[2].push(card.substr(0,2));
+    else if(card[card.length-1]=='♥') card.length<3 ? arrControl[3].push(card[0]) : arrControl[3].push(card.substr(0,2));
+  });
+  let arrStraightFlush=[];
+  arrControl.forEach(arr=>{
+    if(arr.length>4){
+      arr.sort((a,b)=>b-a);
+      console.log(arr);
+      for (let i=0; i<arr.length; i++){
+        if (arr[i]-arr[i+4] == 4) arrStraightFlush=arr.slice(i,i+5);
+      }
+    }
+  })
+
+  let digitToImage=(digit=>{
+    if(digit==11) return 'J';
+    else if(digit==12) return 'Q';
+    else if(digit==13) return 'K';
+    else if(digit==14) return 'A';
+  })
+  
+
+  let arrResult = arrStraightFlush;
+  arrResult=arrResult.map(card=> card.replace(/(11)|(12)|(13)|(14)/, digitToImage));
+
+  let objResult={};
+  if (arrStraightFlush.length==5) {
+    objResult.type="straight-flush";
+    objResult.ranks=arrResult;
+  } 
 
 
 
-   return arr.sort();
+   return objResult;
   // return {type:"TODO", ranks: []};
   
   // return communityCards[1].charCodeAt(1);
@@ -41,7 +82,7 @@ function hand(holeCards, communityCards) {
 
 
 console.log(hand(['K♠','A♦'],['J♣','Q♥','9♥','2♥','3♦']));
-console.log(hand(['K♠','Q♦'],['J♣','Q♥','9♥','2♥','3♦']));
+console.log(hand(['K♥','Q♥'],['J♥','9♥','10♥','2♥','3♦']));
 console.log(hand(['K♠','J♦'],['J♣','K♥','9♥','2♥','3♦']));
 
 // ♠ - 9824
