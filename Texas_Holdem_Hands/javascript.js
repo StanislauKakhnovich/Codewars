@@ -62,15 +62,18 @@ function hand(holeCards, communityCards) {
       if(arr.length>4){
         arr.sort((a,b)=>b-a);
         for (let i=0; i<arr.length; i++){
-          if (arr[i]-arr[i+4] == 4) arrStraightFlush=arr.slice(i,i+5);
+          if (arr[i]-arr[i+4] == 4) {
+            arrStraightFlush=arr.slice(i,i+5);
+          } 
+          
         }
       }
     })
-    if (arrStraightFlush.length==5) {
+    if (arrStraightFlush.length==5 && arrStraightFlush[0]-arrStraightFlush[4]==4) {
       objResult.type="straight-flush";
       arrResult = arrStraightFlush;
       return true;
-    } else return false;
+    } 
   }
 
   let fourOfAKind = () =>{
@@ -86,7 +89,7 @@ function hand(holeCards, communityCards) {
         objResult.type="four-of-a-kind";
         arrResult = arrFourOfAKind;
         return true;
-      } else return false;
+      } 
     }
   }
 
@@ -113,7 +116,31 @@ function hand(holeCards, communityCards) {
       objResult.type="full house";
       arrResult = arrFullHouse;
       return true;
-    } else return false;
+    } 
+  }
+
+  let flush = () =>{
+    let arrControl = [[],[],[],[]];
+    let arrFlush=[];
+    arr.forEach(card=>{
+      if(card[card.length-1]=='♠') card.length<3 ? arrControl[0].push(card[0]) : arrControl[0].push(card.substr(0,2));
+      else if(card[card.length-1]=='♦') card.length<3 ? arrControl[1].push(card[0]) : arrControl[1].push(card.substr(0,2));
+      else if(card[card.length-1]=='♣') card.length<3 ? arrControl[2].push(card[0]) : arrControl[2].push(card.substr(0,2));
+      else if(card[card.length-1]=='♥') card.length<3 ? arrControl[3].push(card[0]) : arrControl[3].push(card.substr(0,2));
+    });
+    arrControl.forEach(arr=>{
+      if(arr.length>4){
+        arr.sort((a,b)=>b-a);
+        arrFlush=arr.slice(0,5);
+      }
+    })
+    if (arrFlush.length>4 && arrFlush[0]-arrFlush[4]!=4) {
+      objResult.type="flush";
+      arrResult = arrFlush;
+      return true;
+    } 
+
+
   }
 
 
@@ -121,8 +148,9 @@ function hand(holeCards, communityCards) {
 
 
 
+  let arrFunc = [straightFlush, fourOfAKind, fullHouse, flush];
 
-  [straightFlush(), fourOfAKind(), fullHouse()].find(elem=>elem==true);
+  arrFunc.find(f=>f()==true);
   arrResult=arrResult.map(card=> card.replace(/(11)|(12)|(13)|(14)/, digitToImage));
   objResult.ranks=arrResult;
 
@@ -135,6 +163,7 @@ console.log(hand(['K♥','Q♥'],['J♥','9♥','10♥','2♥','3♦']));
 console.log(hand(['J♠','J♦'],['J♣','J♥','9♥','2♥','3♦']));
 console.log(hand(['J♠','J♦'],['J♣','J♥','9♥','2♥','3♦']));
 console.log(hand(['7♠','7♦'],['7♣','9♥','9♥','8♥','3♦']));
+console.log(hand(['6♥','A♥'],['J♣','5♥','10♥','2♥','3♥']));
 
 // ♠ - 9824
 // ♦ - 9830
