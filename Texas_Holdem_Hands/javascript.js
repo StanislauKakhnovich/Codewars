@@ -102,7 +102,7 @@ function hand(holeCards, communityCards) {
     for (let i=0; i<arrControl.length; i++){
       if (arrControl[i]-arrControl[i+2] == 0) {
         arrFullHouse=[...arrFullHouse, arrControl[i]];
-        arrControl.splice(i,3);
+        arrControl.splice(i,i+3);
       }
     }
     for (let i=0; i<arrControl.length; i++){
@@ -176,11 +176,31 @@ function hand(holeCards, communityCards) {
     }
   }
 
+  let twoPair = () =>{
+    let arrControl = [];
+    let arrTwoPair=[];
+    arr.forEach(card=>{
+      card.length<3 ? arrControl.push(card[0]) : arrControl.push(card.substr(0,2));
+    });
+    arrControl.sort((a,b)=>b-a);
+    for (let i=0; i<arrControl.length; i++){
+      if (arrControl[i]-arrControl[i+1] == 0) {
+        arrTwoPair=[...arrTwoPair, arrControl[i]];
+        arrControl.splice(i,i+2);
+      }
+    }
+
+    if (arrTwoPair.length==2){
+      arrTwoPair=[...arrTwoPair, arrControl[0]];
+      objResult.type="two pair";
+      arrResult = arrTwoPair;
+      return true;
+    } 
+  }
 
 
 
-
-  let arrFunc = [straightFlush, fourOfAKind, fullHouse, flush, straight, threeOfAKind];
+  let arrFunc = [straightFlush, fourOfAKind, fullHouse, flush, straight, threeOfAKind, twoPair];
 
   arrFunc.find(f=>f()==true);
   arrResult=arrResult.map(card=> card.replace(/(11)|(12)|(13)|(14)/, digitToImage));
@@ -189,15 +209,14 @@ function hand(holeCards, communityCards) {
    return objResult;
 }
 
-
 console.log(hand(['6♥','A♥'],['J♣','5♥','4♥','2♥','3♥']));
 console.log(hand(['K♥','Q♥'],['J♥','9♥','10♥','2♥','3♦']));
-console.log(hand(['J♠','J♦'],['J♣','J♥','9♥','2♥','3♦']));
 console.log(hand(['J♠','J♦'],['J♣','J♥','9♥','2♥','3♦']));
 console.log(hand(['7♠','7♦'],['7♣','9♥','9♥','8♥','3♦']));
 console.log(hand(['6♥','A♥'],['J♣','5♥','10♥','2♥','3♥']));
 console.log(hand(['6♥','A♥'],['J♣','5♥','4♦','2♥','3♠']));
 console.log(hand(['J♠','J♦'],['J♣','8♥','9♥','2♥','3♦']));
+console.log(hand(['J♠','J♦'],['3♣','10♥','9♥','2♥','3♦']));
 
 // ♠ - 9824
 // ♦ - 9830
