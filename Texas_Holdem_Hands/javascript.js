@@ -159,12 +159,28 @@ function hand(holeCards, communityCards) {
     } 
   }
 
+  let threeOfAKind = () =>{
+    let arrControl = [];
+    let arrThreeOfAKind=[];
+    arr.forEach(card=>{
+      card.length<3 ? arrControl.push(card[0]) : arrControl.push(card.substr(0,2));
+    });
+    arrControl.sort((a,b)=>b-a);
+    for (let i=0; i<arrControl.length; i++){
+      if (arrControl[i]-arrControl[i+2] == 0) {
+        arrThreeOfAKind=[...arrThreeOfAKind, arrControl[i], arrControl[i+3], arrControl[i+4]];
+        objResult.type="three-of-a-kind";
+        arrResult = arrThreeOfAKind;
+        return true;
+      } 
+    }
+  }
 
 
 
 
 
-  let arrFunc = [straightFlush, fourOfAKind, fullHouse, flush, straight];
+  let arrFunc = [straightFlush, fourOfAKind, fullHouse, flush, straight, threeOfAKind];
 
   arrFunc.find(f=>f()==true);
   arrResult=arrResult.map(card=> card.replace(/(11)|(12)|(13)|(14)/, digitToImage));
@@ -181,6 +197,7 @@ console.log(hand(['J♠','J♦'],['J♣','J♥','9♥','2♥','3♦']));
 console.log(hand(['7♠','7♦'],['7♣','9♥','9♥','8♥','3♦']));
 console.log(hand(['6♥','A♥'],['J♣','5♥','10♥','2♥','3♥']));
 console.log(hand(['6♥','A♥'],['J♣','5♥','4♦','2♥','3♠']));
+console.log(hand(['J♠','J♦'],['J♣','8♥','9♥','2♥','3♦']));
 
 // ♠ - 9824
 // ♦ - 9830
