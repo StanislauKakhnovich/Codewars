@@ -7,7 +7,7 @@
 // 999 --> "999"
 
 function numberToString(num) {
- 
+ return num+"";
 }
 
 console.log(numberToString(123));
