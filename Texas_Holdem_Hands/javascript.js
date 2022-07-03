@@ -7,8 +7,8 @@
 
 // Straight-flush (five consecutive ranks of the same suit). Higher rank is better.
 // Four-of-a-kind (four cards with the same rank). Tiebreaker is first the rank, then the rank of the remaining card.
-// Full house (three cards with the same rank, two with another). Tiebreaker is first the rank of the three cards, then rank of the 
-// pair.
+// Full house (three cards with the same rank, two with another). Tiebreaker is first the rank of the three cards, then rank 
+//of the  pair.
 // Flush (five cards of the same suit). Higher ranks are better, compared from high to low rank.
 // Straight (five consecutive ranks). Higher rank is better.
 // Three-of-a-kind (three cards of the same rank). Tiebreaker is first the rank of the three cards, then the highest other rank, then 
@@ -80,7 +80,6 @@ function hand(holeCards, communityCards) {
       card.length<3 ? arrControl.push(card[0]) : arrControl.push(card.substr(0,2));
     });
     arrControl.sort((a,b)=>b-a);
-    console.log(arrControl);
     for (let i=0; i<arrControl.length; i++){
       if (arrControl[i]-arrControl[i+3] == 0) {
         arrFourOfAKind=[...arrFourOfAKind, arrControl[i], arrControl[i+4]];
@@ -91,13 +90,39 @@ function hand(holeCards, communityCards) {
     }
   }
 
+  let fullHouse = () =>{
+    let arrControl = [];
+    let arrFullHouse=[];
+    arr.forEach(card=>{
+      card.length<3 ? arrControl.push(card[0]) : arrControl.push(card.substr(0,2));
+    });
+    arrControl.sort((a,b)=>b-a);
+    for (let i=0; i<arrControl.length; i++){
+      if (arrControl[i]-arrControl[i+2] == 0) {
+        arrFullHouse=[...arrFullHouse, arrControl[i]];
+        arrControl.splice(i,3);
+      }
+    }
+    for (let i=0; i<arrControl.length; i++){
+      if (arrControl[i]-arrControl[i+1] == 0) {
+        arrFullHouse=[...arrFullHouse, arrControl[i]];
+        break;
+      }
+    }
+    if (arrFullHouse.length==2){
+      objResult.type="full house";
+      arrResult = arrFullHouse;
+      return true;
+    } else return false;
+  }
 
 
 
 
 
 
-  [straightFlush(), fourOfAKind()].find(elem=>elem==true);
+
+  [straightFlush(), fourOfAKind(), fullHouse()].find(elem=>elem==true);
   arrResult=arrResult.map(card=> card.replace(/(11)|(12)|(13)|(14)/, digitToImage));
   objResult.ranks=arrResult;
 
@@ -108,6 +133,8 @@ function hand(holeCards, communityCards) {
 console.log(hand(['6♥','A♥'],['J♣','5♥','4♥','2♥','3♥']));
 console.log(hand(['K♥','Q♥'],['J♥','9♥','10♥','2♥','3♦']));
 console.log(hand(['J♠','J♦'],['J♣','J♥','9♥','2♥','3♦']));
+console.log(hand(['J♠','J♦'],['J♣','J♥','9♥','2♥','3♦']));
+console.log(hand(['7♠','7♦'],['7♣','9♥','9♥','8♥','3♦']));
 
 // ♠ - 9824
 // ♦ - 9830
