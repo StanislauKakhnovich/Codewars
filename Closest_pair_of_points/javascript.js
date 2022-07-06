@@ -148,7 +148,7 @@ function closestPair(pointS) {
   let minLength;
   minLength1<minLength2 ? minLength=minLength1 : minLength=minLength2;
 
-  let pointS3 = pointS.filter(arr=> arr[0]>(middleX-Math.ceil(minLength))&&arr[0]<(arr[0]+Math.ceil(minLength)));
+  let pointS3 = pointS.filter(arr=> arr[0]>(middleX-Math.ceil(minLength))&&arr[0]<(middleX+Math.ceil(minLength)));
 
   var arrLengths3=[];
   var arrConformity3=[];
@@ -163,18 +163,123 @@ function closestPair(pointS) {
   }
   let minLength3=Math.min.apply(null, arrLengths3);
 
-  if (minLength1<=minLength2&&minLength1<=minLength3){
-     let indexMinLength1=arrLengths1.indexOf(minLength1);
-     return arrConformity1[indexMinLength1];
+    if (minLength1<=minLength2&&minLength1<=minLength3){
+      let indexMinLength1=arrLengths1.indexOf(minLength1);
+      return arrConformity1[indexMinLength1];
+    }
+    else if (minLength1>=minLength2&&minLength2<=minLength3){
+      let indexMinLength2=arrLengths2.indexOf(minLength2);
+      return arrConformity2[indexMinLength2];
   }
-  else if (minLength1>=minLength2&&minLength2<=minLength3){
-    let indexMinLength2=arrLengths2.indexOf(minLength2);
-    return arrConformity2[indexMinLength2];
- }
- else if (minLength1>=minLength3&&minLength2>=minLength3){
-  let indexMinLength3=arrLengths3.indexOf(minLength3);
-  return arrConformity3[indexMinLength3];
-}
+  else if (minLength1>=minLength3&&minLength2>=minLength3){
+    let indexMinLength3=arrLengths3.indexOf(minLength3);
+    return arrConformity3[indexMinLength3];
+  }
 }
 
 console.log(closestPair([[2,2],[2,8],[5,5],[6,3],[6,7],[7,4],[7,9]]));
+
+
+
+
+// function closestPair(pointS) {
+//   pointS.sort((a,b)=>a[0]-b[0]);
+//   let quatro1 = Math.ceil(pointS[pointS.length-1][0]/4);
+//   let quatro2 = quatro1*2;
+//   let quatro3 = quatro1*3;
+//   let pointS1 = pointS.filter(arr=> arr[0]<quatro1);
+//   let pointS2 = pointS.filter(arr=> arr[0]>quatro1&&arr[0]<quatro2);
+//   let pointS3 = pointS.filter(arr=> arr[0]>quatro2&&arr[0]<quatro3);
+//   let pointS4 = pointS.filter(arr=> arr[0]>quatro3);
+
+//   var arrLengths1=[];
+//   var arrConformity1=[];
+//   var x;
+//   var arrPairOfPoints;
+//   for (let i=0; i<pointS1.length; i++){
+//     for (let j=i; j<pointS1.length; j++){
+//       if (j==pointS1.length-1) break;
+//       x = Math.pow((pointS1[i][0]-pointS1[j+1][0]), 2)+Math.pow((pointS1[i][1]-pointS1[j+1][1]), 2);
+//       arrLengths1.push(x);
+//       arrPairOfPoints=[pointS1[i], pointS1[j+1]];
+//       arrConformity1.push(arrPairOfPoints);
+//     }
+//   }
+//   let minLength1=Math.min.apply(null, arrLengths1);
+ 
+//   var arrLengths2=[];
+//   var arrConformity2=[];
+//   for (let i=0; i<pointS2.length; i++){
+//     for (let j=i; j<pointS2.length; j++){
+//       if (j==pointS2.length-1) break;
+//       x = Math.pow((pointS2[i][0]-pointS2[j+1][0]), 2)+Math.pow((pointS2[i][1]-pointS2[j+1][1]), 2);
+//       arrLengths2.push(x);
+//       arrPairOfPoints=[pointS2[i], pointS2[j+1]];
+//       arrConformity2.push(arrPairOfPoints);
+//     }
+//   }
+//   let minLength2=Math.min.apply(null, arrLengths2);
+
+//   var arrLengths3=[];
+//   var arrConformity3=[];
+//   for (let i=0; i<pointS3.length; i++){
+//     for (let j=i; j<pointS3.length; j++){
+//       if (j==pointS3.length-1) break;
+//       x = Math.pow((pointS3[i][0]-pointS3[j+1][0]), 2)+Math.pow((pointS3[i][1]-pointS3[j+1][1]), 2);
+//       arrLengths3.push(x);
+//       arrPairOfPoints=[pointS3[i], pointS3[j+1]];
+//       arrConformity3.push(arrPairOfPoints);
+//     }
+//   }
+//   let minLength3=Math.min.apply(null, arrLengths3);
+
+//   var arrLengths4=[];
+//   var arrConformity4=[];
+//   for (let i=0; i<pointS4.length; i++){
+//     for (let j=i; j<pointS4.length; j++){
+//       if (j==pointS4.length-1) break;
+//       x = Math.pow((pointS4[i][0]-pointS4[j+1][0]), 2)+Math.pow((pointS4[i][1]-pointS4[j+1][1]), 2);
+//       arrLengths4.push(x);
+//       arrPairOfPoints=[pointS4[i], pointS4[j+1]];
+//       arrConformity4.push(arrPairOfPoints);
+//     }
+//   }
+//   let minLength4=Math.min.apply(null, arrLengths4);
+
+//   let minLength12;
+//   minLength1<minLength2 ? minLength12=minLength1 : minLength12=minLength2;
+
+//   let pointS12 = pointS.filter(arr=> arr[0]>(quatro1-Math.ceil(minLength12))&&arr[0]<(arr[0]+Math.ceil(minLength12)));
+
+//   var arrLengths12=[];
+//   var arrConformity12=[];
+//   for (let i=0; i<pointS12.length; i++){
+//     for (let j=i; j<pointS12.length; j++){
+//       if (j==pointS12.length-1) break;
+//       x = Math.pow((pointS12[i][0]-pointS12[j+1][0]), 2)+Math.pow((pointS12[i][1]-pointS12[j+1][1]), 2);
+//       arrLengths12.push(x);
+//       arrPairOfPoints=[pointS12[i], pointS12[j+1]];
+//       arrConformity12.push(arrPairOfPoints);
+//     }
+//   }
+//   let minLength_12=Math.min.apply(null, arrLengths12);
+
+// //   if (minLength1<=minLength2&&minLength1<=minLength3){
+// //      let indexMinLength1=arrLengths1.indexOf(minLength1);
+// //      return arrConformity1[indexMinLength1];
+// //   }
+// //   else if (minLength1>=minLength2&&minLength2<=minLength3){
+// //     let indexMinLength2=arrLengths2.indexOf(minLength2);
+// //     return arrConformity2[indexMinLength2];
+// //  }
+// //  else if (minLength1>=minLength3&&minLength2>=minLength3){
+// //   let indexMinLength3=arrLengths3.indexOf(minLength3);
+// //   return arrConformity3[indexMinLength3];
+// // }
+
+// return pointS2
+
+
+// }
+
+// console.log(closestPair([[2,2],[2,8],[5,5],[6,3],[6,7],[7,4],[7,9]]));
