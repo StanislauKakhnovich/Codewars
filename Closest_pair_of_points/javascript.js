@@ -111,73 +111,73 @@
 // console.log(closestPair([[2,2],[2,8],[5,5],[6,3],[6,7],[7,4],[7,9]]));
 // console.timeEnd('Second');
 
-function closestPair(pointS) {
-  pointS.sort((a,b)=>a[0]-b[0]);
-  let middleX = Math.ceil(pointS[pointS.length-1][0]/2);
-  let pointS1 = pointS.filter(arr=> arr[0]<middleX);
-  let pointS2 = pointS.filter(arr=> arr[0]>middleX);
+// function closestPair(pointS) {
+//   pointS.sort((a,b)=>a[0]-b[0]);
+//   let middleX = Math.ceil(pointS[pointS.length-1][0]/2);
+//   let pointS1 = pointS.filter(arr=> arr[0]<middleX);
+//   let pointS2 = pointS.filter(arr=> arr[0]>middleX);
 
-  var arrLengths1=[];
-  var arrConformity1=[];
-  var x;
-  var arrPairOfPoints;
-  for (let i=0; i<pointS1.length; i++){
-    for (let j=i; j<pointS1.length; j++){
-      if (j==pointS1.length-1) break;
-      x = Math.pow((pointS1[i][0]-pointS1[j+1][0]), 2)+Math.pow((pointS1[i][1]-pointS1[j+1][1]), 2);
-      arrLengths1.push(x);
-      arrPairOfPoints=[pointS1[i], pointS1[j+1]];
-      arrConformity1.push(arrPairOfPoints);
-    }
-  }
-  let minLength1=Math.min.apply(null, arrLengths1);
+//   var arrLengths1=[];
+//   var arrConformity1=[];
+//   var x;
+//   var arrPairOfPoints;
+//   for (let i=0; i<pointS1.length; i++){
+//     for (let j=i; j<pointS1.length; j++){
+//       if (j==pointS1.length-1) break;
+//       x = Math.pow((pointS1[i][0]-pointS1[j+1][0]), 2)+Math.pow((pointS1[i][1]-pointS1[j+1][1]), 2);
+//       arrLengths1.push(x);
+//       arrPairOfPoints=[pointS1[i], pointS1[j+1]];
+//       arrConformity1.push(arrPairOfPoints);
+//     }
+//   }
+//   let minLength1=Math.min.apply(null, arrLengths1);
  
-  var arrLengths2=[];
-  var arrConformity2=[];
-  for (let i=0; i<pointS2.length; i++){
-    for (let j=i; j<pointS2.length; j++){
-      if (j==pointS2.length-1) break;
-      x = Math.pow((pointS2[i][0]-pointS2[j+1][0]), 2)+Math.pow((pointS2[i][1]-pointS2[j+1][1]), 2);
-      arrLengths2.push(x);
-      arrPairOfPoints=[pointS2[i], pointS2[j+1]];
-      arrConformity2.push(arrPairOfPoints);
-    }
-  }
-  let minLength2=Math.min.apply(null, arrLengths2);
+//   var arrLengths2=[];
+//   var arrConformity2=[];
+//   for (let i=0; i<pointS2.length; i++){
+//     for (let j=i; j<pointS2.length; j++){
+//       if (j==pointS2.length-1) break;
+//       x = Math.pow((pointS2[i][0]-pointS2[j+1][0]), 2)+Math.pow((pointS2[i][1]-pointS2[j+1][1]), 2);
+//       arrLengths2.push(x);
+//       arrPairOfPoints=[pointS2[i], pointS2[j+1]];
+//       arrConformity2.push(arrPairOfPoints);
+//     }
+//   }
+//   let minLength2=Math.min.apply(null, arrLengths2);
 
-  let minLength;
-  minLength1<minLength2 ? minLength=minLength1 : minLength=minLength2;
+//   let minLength;
+//   minLength1<minLength2 ? minLength=minLength1 : minLength=minLength2;
 
-  let pointS3 = pointS.filter(arr=> arr[0]>(middleX-Math.ceil(minLength))&&arr[0]<(middleX+Math.ceil(minLength)));
+//   let pointS3 = pointS.filter(arr=> arr[0]>(middleX-Math.ceil(minLength))&&arr[0]<(middleX+Math.ceil(minLength)));
 
-  var arrLengths3=[];
-  var arrConformity3=[];
-  for (let i=0; i<pointS3.length; i++){
-    for (let j=i; j<pointS3.length; j++){
-      if (j==pointS3.length-1) break;
-      x = Math.pow((pointS3[i][0]-pointS3[j+1][0]), 2)+Math.pow((pointS3[i][1]-pointS3[j+1][1]), 2);
-      arrLengths3.push(x);
-      arrPairOfPoints=[pointS3[i], pointS3[j+1]];
-      arrConformity3.push(arrPairOfPoints);
-    }
-  }
-  let minLength3=Math.min.apply(null, arrLengths3);
+//   var arrLengths3=[];
+//   var arrConformity3=[];
+//   for (let i=0; i<pointS3.length; i++){
+//     for (let j=i; j<pointS3.length; j++){
+//       if (j==pointS3.length-1) break;
+//       x = Math.pow((pointS3[i][0]-pointS3[j+1][0]), 2)+Math.pow((pointS3[i][1]-pointS3[j+1][1]), 2);
+//       arrLengths3.push(x);
+//       arrPairOfPoints=[pointS3[i], pointS3[j+1]];
+//       arrConformity3.push(arrPairOfPoints);
+//     }
+//   }
+//   let minLength3=Math.min.apply(null, arrLengths3);
 
-    if (minLength1<=minLength2&&minLength1<=minLength3){
-      let indexMinLength1=arrLengths1.indexOf(minLength1);
-      return arrConformity1[indexMinLength1];
-    }
-    else if (minLength1>=minLength2&&minLength2<=minLength3){
-      let indexMinLength2=arrLengths2.indexOf(minLength2);
-      return arrConformity2[indexMinLength2];
-  }
-  else if (minLength1>=minLength3&&minLength2>=minLength3){
-    let indexMinLength3=arrLengths3.indexOf(minLength3);
-    return arrConformity3[indexMinLength3];
-  }
-}
+//     if (minLength1<=minLength2&&minLength1<=minLength3){
+//       let indexMinLength1=arrLengths1.indexOf(minLength1);
+//       return arrConformity1[indexMinLength1];
+//     }
+//     else if (minLength1>=minLength2&&minLength2<=minLength3){
+//       let indexMinLength2=arrLengths2.indexOf(minLength2);
+//       return arrConformity2[indexMinLength2];
+//   }
+//   else if (minLength1>=minLength3&&minLength2>=minLength3){
+//     let indexMinLength3=arrLengths3.indexOf(minLength3);
+//     return arrConformity3[indexMinLength3];
+//   }
+// }
 
-console.log(closestPair([[2,2],[2,8],[5,5],[6,3],[6,7],[7,4],[7,9]]));
+// console.log(closestPair([[2,2],[2,8],[5,5],[6,3],[6,7],[7,4],[7,9]]));
 
 
 
@@ -281,5 +281,50 @@ console.log(closestPair([[2,2],[2,8],[5,5],[6,3],[6,7],[7,4],[7,9]]));
 
 
 // }
+
+// console.log(closestPair([[2,2],[2,8],[5,5],[6,3],[6,7],[7,4],[7,9]]));
+
+// function closestPair(pointS) {
+//   pointS.sort((a,b)=>a[0]-b[0]);
+//   var arrLengths=[];
+//   var arrConformity=[];
+//   var x;
+//   var arrPairOfPoints;
+
+//   for (let i=0; i<pointS.length; i++) {
+//     if (i==pointS.length-1) break;
+//     x = Math.pow((pointS[i][0]-pointS[i+1][0]), 2)+Math.pow((pointS[i][1]-pointS[i+1][1]), 2);
+//     arrLengths.push(x);
+//     arrPairOfPoints=[pointS[i], pointS[i+1]];
+//     arrConformity.push(arrPairOfPoints);
+//   }
+
+//   for (let i=0; i<pointS.length; i++) {
+//     if (i==pointS.length-2) break;
+//     x = Math.pow((pointS[i][0]-pointS[i+2][0]), 2)+Math.pow((pointS[i][1]-pointS[i+2][1]), 2);
+//     arrLengths.push(x);
+//     arrPairOfPoints=[pointS[i], pointS[i+2]];
+//     arrConformity.push(arrPairOfPoints);
+//   }
+
+//     let minLength=Math.min.apply(null, arrLengths);
+//     let indexMinLength=arrLengths.indexOf(minLength);
+//     return arrConformity[indexMinLength];
+
+// }
+
+function QuickSort(arr){ //Описываем функцию быстрой сортировки
+  if (arr.length == 0) {
+      return [];}
+  var a = [], b = [], p = arr[0];
+  for (var i = 1; i < arr.length; i++){ 
+      if (arr[i][0] < p[0]) a[a.length] = arr[i];
+      else b[b.length] = arr[ i ];
+  }
+  
+  return  QuickSort(a).concat( p,QuickSort(b) );
+}
+
+console.log(QuickSort([[7,9],[2,2],[6,3],[2,8],[5,5],[6,7],[7,4]]));
 
 // console.log(closestPair([[2,2],[2,8],[5,5],[6,3],[6,7],[7,4],[7,9]]));
