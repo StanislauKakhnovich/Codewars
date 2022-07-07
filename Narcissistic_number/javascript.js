@@ -17,9 +17,8 @@
 
 
 function narcissistic(value) {
- 
-
-
+  if(value.toString().split('').reduce((sum, elem, i, arr) =>sum+elem**arr.length,0)==value) return true;
+  else return false;
 }
 
 
