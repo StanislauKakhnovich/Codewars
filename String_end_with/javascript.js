@@ -6,9 +6,13 @@
 // solution('abc', 'd') // returns false
 
 function solution(str, ending){
-  
+
+  return str.endsWith(ending);
 }
 
 
-console.log(bmi(76, 1.76));
-
+console.log(solution('abc', 'bc'));
+console.log(solution('abc', 'd'));
+console.log(solution('abcde', 'cde'));
+console.log(solution('abcde', 'abc'));
+console.log(solution('samurai', 'ra'));
