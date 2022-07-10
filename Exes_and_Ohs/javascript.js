@@ -10,8 +10,15 @@
 // XO("zzoo") => false
 
 function XO(str) {
-  
+  let x = str.match(/[x]/gi)==null?true:str.match(/[x]/gi).length;
+  let o = str.match(/[o]/gi)==null?true:str.match(/[o]/gi).length;;
+  return  x==o;
 }
+// function XO(str) {
+//   let x = str.match(/x/gi);
+//   let o = str.match(/o/gi);
+//   return (x && x.length) === (o && o.length);
+// }
 
 
 console.log(XO("ooxx"));
