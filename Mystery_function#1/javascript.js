@@ -21,7 +21,16 @@
 
 
 function solved(str){
-
+  str = str.split('').sort();
+  let arr =[];
+  if(str.length%2!=0) {
+    for (let i=0; i<str.length; i++){
+      if(!arr.includes(str[i])) arr.push(str[i]);
+    }
+  }
+  if(arr.length%2!=0) arr=str.slice(1);
+  if(str.length%2==0) arr = str;
+  return arr.join('');
 }
 
 
