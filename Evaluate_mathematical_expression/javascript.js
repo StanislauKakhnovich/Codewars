@@ -45,7 +45,15 @@
 // NOTE: Both eval and Function are disabled.
 
 var calc = function (expression) {
- 
+  //return expression.match(/[\d\+\*\\\-]+/g);
+  // let arrExp = expression.split('');
+  // arrExp.forEach(elem, i=>{
+  //   // if(!isNaN(elem))
+  //   if (elem=='+') return elem;
+
+  // })
+  return JSON.parse(expression)
+  
 };
 
 
