@@ -5,9 +5,10 @@
 // The input string will only consist of lower case letters and/or spaces.
 
 function getCount(str) {
-  return str.match(/[aeiou]/g).length;
+  return str.match(/[aeiou]/gi)?str.match(/[aeiou]/gi).length:0;
 }
 
 
 console.log(getCount("abracadabra"));
+console.log(getCount("bbbb"));
 
