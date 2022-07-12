@@ -19,10 +19,31 @@
 // ]
 
 function towerBuilder(nFloors) {
-  
+  let tower = [];
+  let star = "*";
+  for (let i=0; i<nFloors; i++){
+    let space = "";
+    for (let j=i; j<nFloors-1; j++){
+      space+=" ";
+    }
+    let floor = space+star+space;
+    tower.push(floor);
+    star = "*"+star+"*";
+    
+  }
+  return tower;
 }
 
 
 console.log(towerBuilder(1));
 console.log(towerBuilder(2));
 console.log(towerBuilder(3));
+console.log(towerBuilder(10));
+
+
+// function towerBuilder(n) {
+//   return Array.from({length: n}, function(v, k) {
+//     const spaces = ' '.repeat(n - k - 1);
+//     return spaces + '*'.repeat(k + k + 1) + spaces;
+//   });
+// }
