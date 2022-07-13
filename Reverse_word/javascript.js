@@ -6,6 +6,7 @@
 // "double  spaces"      ==> "elbuod  secaps"
 
 function reverseWords(str) {
+  return str.split(' ').map(elem=>elem.split('').reverse().join('')).join(' ');
   
 }
 
@@ -13,3 +14,4 @@ function reverseWords(str) {
 console.log(reverseWords("This is an example!"));
 console.log(reverseWords("double  spaces"));
 
+// return str.split("").reverse().join("").split(" ").reverse().join(" ");
