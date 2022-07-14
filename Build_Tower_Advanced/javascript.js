@@ -35,7 +35,12 @@
 
 
 function towerBuilder(nFloors, nBlockSz) {
-  
+  let nfloors = nBlockSz[1];
+  let block = nBlockSz[0];
+    return Array.from({length: nFloors*nfloors}, function(v, k) {
+    const spaces = ' '.repeat((nFloors-Math.floor(k/nfloors)-1)*block);
+    return spaces + '*'.repeat(block*(2*Math.floor(k/nfloors)+1)) + spaces;
+  });
 }
 
 
