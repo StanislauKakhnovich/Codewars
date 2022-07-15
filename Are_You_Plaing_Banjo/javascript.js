@@ -1,16 +1,16 @@
-function bmi(weight, height) {
-  let bmi = weight / (height * height);
-  console.log(bmi);
-  if(bmi <= 18.5)
-    return "Underweight";
-  if(bmi <= 25)
-    return "Normal";
-  if(bmi <= 30)
-    return "Overweight";
-  if(bmi > 30)
-    return "Obese";
+// Create a function which answers the question "Are you playing banjo?".
+// If your name starts with the letter "R" or lower case "r", you are playing banjo!
+
+// The function takes a name as its only argument, and returns one of the following strings:
+
+// name + " plays banjo" 
+// name + " does not play banjo"
+// Names given are always valid strings.
+
+function areYouPlayingBanjo(name) {
+  return /^r/i.test(name)?`${name} plays banjo`:`${name} does not play banjo`;
 }
 
 
-console.log(bmi(76, 1.76));
-
+console.log(areYouPlayingBanjo("rex"));
+console.log(areYouPlayingBanjo("Stas"));
