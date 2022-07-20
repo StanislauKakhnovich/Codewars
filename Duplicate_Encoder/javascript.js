@@ -12,18 +12,37 @@
 // the "XXX" is the expected result, not the input!
 
 // function duplicateEncode(word){
-//   let replaceFuction = (match)=>{
+  
+//   let replaceFunction = (match)=>{
 //     if (word.match(RegExp(match, 'gi')).length>1) return ")";
 //     else return "(";
 //   }
-//   return word.replace(/./gi, replaceFuction);
+//   return word.replace(/./gi, replaceFunction);
 // }
 
 function duplicateEncode(word){
-
-
-  return ;
+  let arr = word.toLowerCase().split('');
+  let obj = {};
+  arr.forEach(letter=>{
+    if (!(letter in obj)) obj[letter] = 1;
+    else if (letter in obj) obj[letter]++;
+  });
+  arr = arr.map(letter=>{
+    if (obj[letter]>1) return letter = ")";
+    else if (obj[letter]==1) return letter = "(";
+  });
+  return arr.join('') ;
 }
+
+// function duplicateEncode(word){
+//   return word
+//     .toLowerCase()
+//     .split('')
+//     .map( function (a, i, w) {
+//       return w.indexOf(a) == w.lastIndexOf(a) ? '(' : ')'
+//     })
+//     .join('');
+// }
 
 
 console.log(duplicateEncode("din"));
