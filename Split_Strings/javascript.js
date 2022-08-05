@@ -8,9 +8,16 @@
 // * 'abcdef' => ['ab', 'cd', 'ef']
 
 function solution(str){
-   
+  if(str.length%2!=0) str = str+"_";
+  if(str === '') return [];
+  else return str.replace(/.{2}/g, '$& ').trim().split(' ');
 }
 
 
 console.log(solution('abc'));
 console.log(solution('abcdef'));
+console.log(solution(''));
+
+// function solution(s){
+//   return (s+"_").match(/.{2}/g)||[]
+// }
