@@ -12,17 +12,21 @@
 // sum(1111)=> 288045
 // Please rank and upvote if you enjoyed it! Good luck! :)
 
-function solution(number){
-    let result = 0;
-    if(number>0) {
-        for (let i=1; i<number; i++) {
-            if (i%3==0||i%5==0){
-                result = result + i;
-            }
-        }
-    }
-    return result;
-}
+// function solution(number){
+//     let result = 0;
+//     if(number>0) {
+//         for (let i=1; i<number; i++) {
+//             if (i%3==0||i%5==0){
+//                 result = result + i;
+//             }
+//         }
+//     }
+//     return result;
+// }
+//sum=n=>{let r=0;for(let i=1;i<=n;i++){if(i%3==0||i%5==0)r+=i}return r};
+//sum=n=>{return n==1?0:(n%3==0||n%5==0)?n+sum(n-1):sum(n-1)}
+//sum=n=>{return n * (n + 1) / 2}
+
 // sum=n=>{
 //     let result = 0;
 //     for (let i=1; i<=n; i++) {
@@ -33,7 +37,7 @@ function solution(number){
 //     return result
 // }
 
-sum=n=>Array.from({length: n+1}, (_,i) => (i%3==0||i%5==0)?i:0).reduce((x,y)=>x+y)
+sum=n=>Array.from({length:n+1},(_,i)=>(i%3==0||i%5==0)?i:0).reduce((x,y)=>x+y)
 
 console.log(sum(10));
 console.log(sum(15));
