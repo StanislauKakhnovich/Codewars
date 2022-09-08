@@ -9,11 +9,16 @@
 // 30 --> 8 (1, 2, 3, 5, 6, 10, 15, 30)
 
 function getDivisorsCnt(n){
+  //return Array.from({length:n+1}, (v,k)=>k).filter(elem=>n%elem==0).length;
   let count = 0;
-  
+  for (let i=1; i<=n; i++){
+    if (n%i==0) count++;
+  }
+  return count
 }
 
 console.log(getDivisorsCnt(4));
 console.log(getDivisorsCnt(5));
 console.log(getDivisorsCnt(12));
 console.log(getDivisorsCnt(30));
+console.log(getDivisorsCnt(50000));
